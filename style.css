@@ -1,0 +1,23 @@
+body  {
+    max-width: 500px;
+    max-height: 500px;
+    min-width: 305px;
+    min-height: 305px;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    border: 2px black solid;
+    margin: auto;
+    border-radius: 8px;
+}
+
+#titulo {
+    border-bottom: 2px gray solid;
+    font-size: 40px;
+    padding: 10px;
+}
+
+.linha  {
+    margin: 2px;
+    margin-top: 5px;
+    width: 80%;
+}
