@@ -19,8 +19,26 @@ body  {
     font-weight: bolder;
 }
 
-.linha  {
-    margin: 2px;
+#btnadd {
+    font-size: 16px;
+    background-color: lightgreen;
+    border-radius: 50%;
+    border-color: white;
+    align-items: center;
+}
+
+.linha {
+    background-color: white;
+    width: 60%;
+    margin: auto;
     margin-top: 15px;
-    width: 80%;
+    padding: 2px;
+    padding-left: 6px;
+    border-radius: 18px;
+}
+
+.entrada  {
+    margin: 2px;
+    width: 90%;
+    border: none;
 }
