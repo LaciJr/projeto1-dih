@@ -44,6 +44,8 @@ body  {
     margin: 2px;
     width: 90%;
     border: none;
+    cursor: pointer;
+    outline: none;
 }
 
 p {
