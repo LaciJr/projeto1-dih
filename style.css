@@ -1,4 +1,5 @@
 body  {
+    font-size: 13px;
     max-width: 700px;
     max-height: 700px;
     min-width: 305px;
@@ -18,7 +19,7 @@ body  {
     font-weight: bolder;
 }
 
-#btnadd {
+#btnAdd {
     font-size: 16px;
     background-color: lightgreen;
     border-radius: 50%;
@@ -39,20 +40,19 @@ body  {
     justify-content: space-between;
 }
 
-.entrada, p {
+#entrada, p {
     margin: 2px;
     width: 90%;
     border: none;
 }
 
 p {
-    font-size: 14px;
-    padding: 1px;
-    padding-right: 2px;
-    padding-left: 6px;
+    margin: 2px;
+    padding: 2px;
+    padding-right: 1px;
 }
 
-#btnremove {
+#btnRemove {
     font-size: 16px;
     background-color: tomato;
     border-radius: 50%;
