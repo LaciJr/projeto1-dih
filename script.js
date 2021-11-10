@@ -5,9 +5,6 @@ var key = 0;
 
 //Adiciona os itens do localstorage
 var tamanhoLista = localStorage.getItem('key')
-for (i = 0; i =< tamanhoLista; i++) {
-
-}
 
 //Adicionar nova tarefa
 btnAdd.addEventListener('click', event => {
@@ -19,9 +16,9 @@ btnAdd.addEventListener('click', event => {
     let novaLi = document.createElement("li");
     novaLi.className = 'linha'
     let novoP = document.createElement("p");
-    novaDiv.appendChild(novoP);
+    novaLi.appendChild(novoP);
     novoP.innerHTML = valorTarefa;
     let listaEntrada = document.getElementById("listaEntrada");
-    divEntrada.insertAdjacentElement("afterbegin", novaLi);
+    listaEntrada.insertAdjacentElement("afterbegin", novaLi);
 });
 

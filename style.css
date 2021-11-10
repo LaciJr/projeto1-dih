@@ -29,7 +29,7 @@ body  {
 
 .linha {
     background-color: white;
-    width: 60%;
+    width: 50%;
     margin: auto;
     margin-top: 15px;
     padding: 2px;
@@ -38,6 +38,14 @@ body  {
     text-align: start;
     display: inline-flex;
     justify-content: space-between;
+}
+
+div.linha {
+    border: 2px lightgray solid;
+}
+
+#listaEntrada {
+    padding: 0px;
 }
 
 #entrada, p {
