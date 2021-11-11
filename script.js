@@ -11,55 +11,29 @@ if (storage) {
     listaRestaurada = JSON.parse(storage)
     for(i = 0; i < listaRestaurada.length; i++) {
         let itensAntigos = listaRestaurada[i];
-        carregar(itensAntigos);
+        novaLinha(itensAntigos);
     };
 };
-
-//função para adicionar itens na lista sem adicionar no storage
-function carregar(item) {
-    let novaLi = document.createElement("li");
-    novaLi.className = `linha ${item.id}`;
-    
-    //adiciona o checkbox
-    let checkbox = document.createElement("input");
-    checkbox.type = 'checkbox';
-    checkbox.className = `check check${item.id}`;
-    checkbox.onclick = `riscar(${item.id})`;
-    novaLi.appendChild(checkbox);
-    
-    //adiciona o label com a tarefa
-    let novaLabel = document.createElement("label");
-    novaLabel.setAttribute('for', `check${item.id}`);
-    novaLi.appendChild(novaLabel);
-    novaLabel.innerHTML = item.valor;
-
-    //adiciona o botão de remover
-    let novoBtn = document.createElement("button");
-    novoBtn.id = 'btnRemove';
-    novoBtn.className =  `btnRemove${item.id}`
-    novoBtn.innerHTML = '-';
-    novoBtn.onclick = `remover(${item.id})`;
-    novaLi.appendChild(novoBtn);
-    
-    //insere item na lista
-    listaEntrada.insertAdjacentElement("afterbegin", novaLi);
-}
 
 //função para adicionar itens na lista e no storage
 function novaLinha (item) {
     let novaLi = document.createElement("li");
-    novaLi.className = `linha ${item.id}`;
+    novaLi.className = `linha`;
+    novaLi.id = `${item.id}`;
     
     //adiciona o checkbox
     let checkbox = document.createElement("input");
     checkbox.type = 'checkbox';
     checkbox.id = `check check${item.id}`;
-    //checkbox.onclick = riscar(item.id);
+    checkbox.onclick = function riscar () {
+        const riscado = document.getElementsByClassName(`checked${item.id}`);
+        
+    }
     novaLi.appendChild(checkbox);
     
     //adiciona o label com a tarefa
     let novaLabel = document.createElement("label");
-    novaLabel.setAttribute('for', `check${item.id}`);
+    novaLabel.className = `checked${item.id}`;
     novaLi.appendChild(novaLabel);
     novaLabel.innerHTML = item.valor;
 
@@ -68,18 +42,23 @@ function novaLinha (item) {
     novoBtn.id = 'btnRemove';
     novoBtn.className =  `btnRemove${item.id}`
     novoBtn.innerHTML = '-';
-    //document.getElementById('btnRemove').onclick = remover(item.id);
+    novoBtn.onclick = function remover() {
+        const removido = document.getElementById(`${item.id}`);
+        listaEntrada.removeChild(removido);
+    
+        //remove da lista
+        listaRestaurada.splice(item.id);
+    
+        //converte para JSON
+        const listaJSON = JSON.stringify(listaRestaurada);
+    
+        //insere no localstorage
+        localStorage.setItem('atividades', listaJSON);
+    };
     novaLi.appendChild(novoBtn);
     
-    //insere item na lista
+    //insere item
     listaEntrada.insertAdjacentElement("afterbegin", novaLi);
-    listaRestaurada.push(item);
-
-    //converte para JSON
-    const listaJSON = JSON.stringify(listaRestaurada);
-
-    //insere no localstorage
-    localStorage.setItem('atividades', listaJSON);
     }
 
 //limpar a entrada depois de inserir item 
@@ -96,16 +75,21 @@ btnAdd.addEventListener('click', event => {
             feito: false,
         }
         novaLinha(item);
+        
+        //insere na lista
+        listaRestaurada.push(item);
+
+        //converte para JSON
+        const listaJSON = JSON.stringify(listaRestaurada);
+    
+        //insere no localstorage
+        localStorage.setItem('atividades', listaJSON);
+
         limparEntrada(); 
     } 
     else {
         window.alert('É necessário inserir uma tarefa!');
     }
 });
-
-function remover(id) {
-    const removido = document.getElementsByClassName(`${id}`);
-    listaEntrada.removeChild(removido);
-}
 
 
