@@ -13,7 +13,6 @@ body  {
 
 #titulo {
     color: white;
-    border-bottom: 6px lightgray dotted;
     font-size: 40px;
     padding: 8px;
     font-weight: bolder;
@@ -21,6 +20,7 @@ body  {
 
 #btnAdd {
     font-size: 16px;
+    font-weight: bold;
     background-color: lightgreen;
     border-radius: 50%;
     border-color: white;
@@ -44,19 +44,28 @@ div.linha {
     border: 2px lightgray solid;
 }
 
-#listaEntrada {
-    padding: 0px;
+li.linha:hover {
+    background-color: whitesmoke;
 }
 
-#entrada, p {
+#listaEntrada {
+    border-top: 1px skyblue solid;
+    border-bottom: 1px skyblue solid;
+    border-radius: 10px;
+    padding: 0px;
+    padding-bottom: 15px;
+}
+
+#entrada, label {
     margin: 2px;
     width: 90%;
     border: none;
     cursor: pointer;
     outline: none;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-p {
+label {
     margin: 2px;
     padding: 2px;
     padding-right: 1px;
@@ -64,6 +73,7 @@ p {
 
 #btnRemove {
     font-size: 16px;
+    font-weight: bold;
     background-color: tomato;
     border-radius: 50%;
     border-color: white;

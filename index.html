@@ -10,18 +10,19 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-    <header id="titulo">To-Do List</header>
+    <header id="titulo">To-Do List &#10004;</header>
     <main>
-        <div class="linha">
-            <input type="text" id="entrada" placeholder="Nova tarefa">
-            <button id="btnAdd"><b>+</b></button>
-        </div>
-    </main> 
-    <ul id="listaEntrada">
-        <li class="linha">
-            <p>teste</p>
-            <button id="btnRemove"><b>-</b></button>
-        </li>
-    </ul>
+        <section>
+            <div class="linha">
+                <input type="text" maxlength="40" id="entrada" placeholder="Nova tarefa">
+                <button id="btnAdd">+</button>
+            </div>
+        </section> 
+        <ul id="listaEntrada">
+        </ul>
+    </main>
+    <footer>
+        <i>DEVinHouse &copy; 2021</i>
+    </footer> 
 </body>
 </html>
