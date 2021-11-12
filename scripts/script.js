@@ -24,7 +24,7 @@ function inStorage (listaAtualizada) {
      localStorage.setItem('atividades', listaJSON);
 }
 
-//função para adicionar itens
+//função para adicionar tarefas novas e do storage
 function novaLinha (item) {
     let novaLi = document.createElement("li");
     novaLi.className = `linha`;
@@ -36,7 +36,7 @@ function novaLinha (item) {
     checkbox.id = `check${item.id}`;
     checkbox.className = 'stylecheck';
 
-    //altera o .feito do item de acordo com o checkbox
+    //altera o .feito do item de acordo com o checkbox e atualiza o storage/lista
     checkbox.addEventListener ('change', event => {
         if (checkbox.checked) {
             item.feito = true;
@@ -68,14 +68,19 @@ function novaLinha (item) {
     novoBtn.id = 'btnRemove';
     novoBtn.className =  `btnRemove${item.id}`
     novoBtn.innerHTML = '-';
+    //função do botão remover e atualizar o storage/lista
     novoBtn.onclick = function remover() {
-        const removido = document.getElementById(`${item.id}`);
-        listaEntrada.removeChild(removido);
+        
+        //confirmação da remoçao
+        if (window.confirm("Tem certeza que deseja excluir esta tarefa?")){
+            const removido = document.getElementById(`${item.id}`);
+            listaEntrada.removeChild(removido);
     
         //remove da lista
-        listaRestaurada.splice(item.id);
+            listaRestaurada.splice(item.id);
     
-        inStorage(listaRestaurada);
+            inStorage(listaRestaurada);
+        };
     };
     novaLi.appendChild(novoBtn);
     
@@ -88,7 +93,7 @@ function limparEntrada () {
     tarefa.value = '';
 }
 
-//Adicionar nova tarefa
+//Botão para dicionar nova tarefa
 btnAdd.addEventListener('click', event => {
     if (tarefa.value != '') {
         const item = {
