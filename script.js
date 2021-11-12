@@ -15,7 +15,16 @@ if (storage) {
     };
 };
 
-//função para adicionar itens na lista e no storage
+//função para inserir lista no local storage
+function inStorage (listaAtualizada) {
+     //converte para JSON
+     const listaJSON = JSON.stringify(listaAtualizada);
+    
+     //insere no localstorage
+     localStorage.setItem('atividades', listaJSON);
+}
+
+//função para adicionar itens
 function novaLinha (item) {
     let novaLi = document.createElement("li");
     novaLi.className = `linha`;
@@ -24,18 +33,35 @@ function novaLinha (item) {
     //adiciona o checkbox
     let checkbox = document.createElement("input");
     checkbox.type = 'checkbox';
-    checkbox.id = `check check${item.id}`;
-    checkbox.onclick = function riscar () {
-        const riscado = document.getElementsByClassName(`checked${item.id}`);
-        
-    }
+    checkbox.id = `check${item.id}`;
+    checkbox.className = 'stylecheck';
+
+    //altera o .feito do item de acordo com o checkbox
+    checkbox.addEventListener ('change', event => {
+        if (checkbox.checked) {
+            item.feito = true;
+            novaLabel.className = 'true'
+        }
+        else {
+            item.feito = false;
+            novaLabel.className = 'false'
+        }
+
+        inStorage(listaRestaurada);
+    });
     novaLi.appendChild(checkbox);
     
     //adiciona o label com a tarefa
     let novaLabel = document.createElement("label");
-    novaLabel.className = `checked${item.id}`;
+    novaLabel.setAttribute('for',`check${item.id}`);
     novaLi.appendChild(novaLabel);
     novaLabel.innerHTML = item.valor;
+
+    //verifica se o checkbox está marcado
+    if (item.feito == true) {
+        checkbox.checked = true;
+        novaLabel.className = 'true';
+    };
 
     //adiciona o botão de remover
     let novoBtn = document.createElement("button");
@@ -49,11 +75,7 @@ function novaLinha (item) {
         //remove da lista
         listaRestaurada.splice(item.id);
     
-        //converte para JSON
-        const listaJSON = JSON.stringify(listaRestaurada);
-    
-        //insere no localstorage
-        localStorage.setItem('atividades', listaJSON);
+        inStorage(listaRestaurada);
     };
     novaLi.appendChild(novoBtn);
     
@@ -79,11 +101,7 @@ btnAdd.addEventListener('click', event => {
         //insere na lista
         listaRestaurada.push(item);
 
-        //converte para JSON
-        const listaJSON = JSON.stringify(listaRestaurada);
-    
-        //insere no localstorage
-        localStorage.setItem('atividades', listaJSON);
+        inStorage(listaRestaurada);
 
         limparEntrada(); 
     } 
