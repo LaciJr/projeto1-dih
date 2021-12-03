@@ -77,10 +77,10 @@ function novaLinha (item) {
             listaEntrada.removeChild(removido);
     
         //remove da lista
-            listaRestaurada.splice(item.id);
-    
-            inStorage(listaRestaurada);
+            listaRestaurada.splice(listaRestaurada.indexOf(item), 1);
         };
+
+        inStorage(listaRestaurada);
     };
     novaLi.appendChild(novoBtn);
     
